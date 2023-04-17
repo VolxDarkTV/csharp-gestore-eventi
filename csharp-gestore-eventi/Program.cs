@@ -18,8 +18,8 @@
                     Console.Write("Inserisci la Data dell'evento (dd/mm/yyyy): ");
 
                     string dateInput = Console.ReadLine();
-                    DateOnly date = DateOnly.Parse(dateInput);
-                    string dateString = date.ToString("dd-MM-yyyy");
+                    DateOnly data = DateOnly.Parse(dateInput);
+                    string dateString = data.ToString("dd-MM-yyyy");
 
                     //Capienza massima
                     Console.Write("Inserisci la Capienza Massima: ");
@@ -27,7 +27,7 @@
 
                  
 
-                    Evento evento = new Evento(titolo, date, capienza);
+                    Evento evento = new Evento(titolo, data, capienza);
                     Console.WriteLine(evento.CapienzaMassima);
 
                     //PostiPrenotati
@@ -52,7 +52,23 @@
 
                     Console.WriteLine($"Posti Rimanenti: {evento.CapienzaMassima}");
 
-                    error = true;
+
+
+                    List<Evento> programmaList = new List<Evento>();
+
+                    Console.Write($"Titolo Programma: ");
+                    string titoloProgramma = Console.ReadLine();
+                    Console.Write($"Quanti Eventi vuoi inserire?");
+                    int eventiProgramma = Convert.ToInt32(Console.ReadLine());
+
+                    ProgrammaEventi programmaEventi = new ProgrammaEventi(titoloProgramma);
+
+                    for (int i = 0; i < eventiProgramma; i++)
+                    {
+                        programmaEventi.AggiungiEvento(programmaEventi);
+                    }
+    
+                    //error = true;
                 }
                 catch (ArgumentNullException e)
                 {
